@@ -32,7 +32,9 @@ void Relay::relayData(ITransceiver& source, ITransceiver& dest)
             DataBuffer nextData = source.receiveNextData();
             
             if (nextData.size > 0)
+            {
                 dest.send(nextData);
+            }
             else
                 if (++emptyPacketsCounter > MaxEmptyPacketsInARow)
                     return;
