@@ -17,23 +17,21 @@
 #endif
 
 #include <ITransceiver.h>
-#include <Task.h>
+#include <IExecutable.h>
 
 
-class Relay : public Task
+class Relay : public IExecutable
 {
-    ITransceiver& transc1;
-    ITransceiver& transc2;
-
-    static const uint16_t MaxEmptyPacketsInARow = 3;
+    PacketComm::ITransceiver& transc1;
+    PacketComm::ITransceiver& transc2;
 
 public:
-    Relay(ITransceiver& transceiver1, ITransceiver& transceiver2);
+    Relay(PacketComm::ITransceiver& transceiver1, PacketComm::ITransceiver& transceiver2);
 
 private:
     void execute() override;
 
-    static void relayData(ITransceiver& source, ITransceiver& dest);
+    static void relayData(PacketComm::ITransceiver& source, PacketComm::ITransceiver& dest);
 };
 
 
